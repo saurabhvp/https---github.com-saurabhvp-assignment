@@ -1,0 +1,3 @@
+FROM frolvlad/alpine-oraclejdk8:slim
+ADD transactions-webtier-0.0.1.jar transweb.jar
+ENTRYPOINT ["java","-jar","/transweb.jar"]

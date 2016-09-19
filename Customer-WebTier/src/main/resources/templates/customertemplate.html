@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Customer Info Screen</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="http://localhost:8081/css/app.css"/>
+    <script src="http://localhost:8081/webjars/angularjs/1.4.9/angular.js"></script>
+	<script src="http://localhost:8081/webjars/angularjs/1.4.9/angular-resource.js"></script>
+	<script src="http://localhost:8081/webjars/angularjs/1.4.9/angular-route.js"></script>
+	<link rel="stylesheet" href="http://localhost:8081/webjars/bootstrap/3.3.6/css/bootstrap.css"/>
+	<script>
+	var app = angular.module('app', []);
+	app.config(['$httpProvider', function($httpProvider) {
+	    $httpProvider.defaults.useXDomain = true;
+	    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+	}
+	]);
+
+	app.controller('customerController', function($scope, $http) {
+	   $scope.acts = [];
+	    //alert("1");
+	    _refreshPageData();
+	    //alert("5");
+	  //HTTP GET- get all employees collection
+	    function _refreshPageData() {
+	    	//alert(document.getElementById("ap"))
+	    	//alert(document.getElementById("ap").innerHTML);
+	    	var actno_from_ctrl = document.getElementById("ap").innerHTML;
+	    	var apiurl = 'http://localhost:8080/customer/get-by-actno?actno='+actno_from_ctrl;
+	    	//alert("actno_from_ctrl "+actno_from_ctrl)
+	        $http({
+	            method : 'GET',
+	            headers: {
+	            	'Access-Control-Allow-Origin':'*'
+	            },
+	            url : apiurl
+	        }).then(function successCallback(response) {
+	            $scope.acts = response.data;
+	            //alert("success: "+response.data);
+	        }, function errorCallback(response) {
+	        	$scope.acts = response.data;
+	            //alert("error:"+response);
+	        	//console.log(response.statusText);
+	        });
+	    }
+	    
+	    function _success(response) {
+	        _refreshPageData();
+	        _clearForm()
+	    }
+
+	    function _error(response) {
+	        console.log(response.statusText);
+	    }
+	    
+	    
+	    
+	});
+	</script>
+</head>
+<body>
+
+Customer Information: <p id="ap" style="color:white" th:text="${actno}" />
+<div class="section" ng-app="app" ng-controller="customerController">
+	<div>
+	<table border="1">
+            <tr>
+                <th width="200">Account Number </th>
+                <th width="200">Name</th>
+                <th width="200">Address</th>
+                <th width="200">Phone Number</th>
+            </tr>
+ 
+            <tr ng-repeat="act in acts">
+                <td>{{ act.actno }}</td>
+                <td>{{ act.name }}</td>
+                <td>{{ act.address }}</td>
+                <td>{{ act.phoneno }}</td>
+           </tr>
+ 
+	</table>
+	   </div>
+</div>
+</body>
+</html>

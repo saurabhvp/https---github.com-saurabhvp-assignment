@@ -1,0 +1,22 @@
+<div class="section">
+    <h3>{{headingTitle}}</h3>
+    <div>
+	<table>
+            <tr>
+                <th width="200">Account Number</th>
+                <th width="200">Name</th>
+                <th width="200">Address</th>
+                <th width="200">Phone Number</th>
+            </tr>
+ 
+            <tr ng-repeat="act in acts">
+                <td>{{ act.actno }}</td>
+                <td>{{ act.name }}</td>
+                <td>{{ act.address }}</td>
+                <td>{{ act.phoneno }}</td>
+           </tr>
+ 
+	</table>
+	   </div>
+</div>
+      

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="app" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="app" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Portal App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/portalapp.css">
+    
+<script language="JavaScript">
+var renderStart = new Date().getTime();
+window.onload=function() { 
+   var elapsed = new Date().getTime()-renderStart;
+   // send the info to the server 
+   //alert('Rendered in ' + elapsed + 'ms'); 
+   document.getElementById("timeelapsed").innerHTML= elapsed +"ms";
+} 
+
+
+</script>
+
+    
+</head>
+
+
+
+<body>
+<h2>Servicing Portal </h2>
+<p align="right"> Time Elapsed: <label id="timeelapsed"></label>&nbsp;&nbsp;<label id="timeelapsedB"></label> 
+<p>
+<div>
+<input type="text" id="accountnumber" value="379602778953001"><a href="#/custpage">Go</a> 
+<div>
+<p>
+<div class="home-section">
+    <ul class="menu-list">
+        <li><a href="#/custpage">Customer Info</a></li>
+        <li><a href="#/balpage">Balance Summary</a></li>
+    </ul>
+</div>&nbsp;&nbsp;&nbsp;&nbsp;
+<div ng-view></div>
+<script src="/webjars/angularjs/1.4.9/angular.js"></script>
+<script src="/webjars/angularjs/1.4.9/angular-resource.js"></script>
+<script src="/webjars/angularjs/1.4.9/angular-route.js"></script>
+<script src="/js/portalapp.js"></script>
+<script src="/js/portalcontroller.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.css">
+</body>
+
+</html>

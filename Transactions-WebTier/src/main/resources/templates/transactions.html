@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Customer Info Screen</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="http://localhost:9081/css/app.css"/>
+    <script src="http://localhost:9081/webjars/angularjs/1.4.9/angular.js"></script>
+	<script src="http://localhost:9081/webjars/angularjs/1.4.9/angular-resource.js"></script>
+	<script src="http://localhost:9081/webjars/angularjs/1.4.9/angular-route.js"></script>
+	<script src="http://localhost:9081/js/transactionscontroller.js"></script>
+	<link rel="stylesheet" href="http://localhost:9081/webjars/bootstrap/3.3.6/css/bootstrap.css"/>
+</head>
+<body>
+
+<b>Balance Summary:</b> <p id="ap" style="color:white" th:text="${actno}" />
+<p></p>  
+
+<div class="section" ng-app="app" >
+	<p><b>Balance Information</b></p>
+	<div ng-controller="balancedataController">
+	<table border="1">
+            <tr>
+                <th width="200">Account Number </th>
+                <th width="200">Balance Due</th>
+                <th width="200">Balance Due Date</th>
+                <th width="200">Last Payment Amount</th>
+            </tr>
+ 
+            <tr ng-repeat="balance in balances">
+                <td>{{ balance.actno }}</td>
+                <td>{{ balance.balancedue }}</td>
+                <td>{{ balance.balanceduedate }}</td>
+                <td>{{ balance.lastpymtamt }}</td>
+           </tr>
+ 
+	</table>
+	</div>
+	<p></p>
+	<p><b>Last Month Transactions</b></p>
+	<div ng-controller="transactionsController">
+	<table border="1">
+            <tr>
+                <th width="200">Account Number </th>
+                <th width="200">Transactions Name</th>
+                <th width="200">Transactions Date</th>
+                <th width="200">Amount</th>
+            </tr>
+ 
+            <tr ng-repeat="transaction in transactions">
+                <td>{{ transaction.actno }}</td>
+                <td>{{ transaction.transname }}</td>
+                <td>{{ transaction.transdate }}</td>
+                <td>{{ transaction.amount }}</td>
+           </tr>
+ 
+	</table>
+	   </div>
+	
+</div>
+</body>
+</html>
